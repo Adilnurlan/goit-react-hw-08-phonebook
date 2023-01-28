@@ -1,7 +1,11 @@
+import { useSelector } from 'react-redux';
+import { selectToken } from 'redux/Auth/auth-selectors';
+
 import { Nav } from './Navigation.styled';
 import { List } from './Navigation.styled';
 
 export const Navigation = () => {
+  const token = useSelector(selectToken);
   return (
     <nav>
       <List>
@@ -16,9 +20,11 @@ export const Navigation = () => {
         <li>
           <Nav to="/login">Login</Nav>
         </li>
-        <li>
-          <Nav to="/contacts">Contacts</Nav>
-        </li>
+        {token && (
+          <li>
+            <Nav to="/contacts">Contacts</Nav>
+          </li>
+        )}
       </List>
     </nav>
   );
