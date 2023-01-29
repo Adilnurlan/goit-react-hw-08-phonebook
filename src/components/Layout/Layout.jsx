@@ -1,17 +1,12 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Navigation } from 'components/Navigation/Navigation';
 import { Loader } from 'components/Loader/Loader';
-import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/Auth/auth-selectors';
-import { AuthMenu } from 'components/AuthMenu/AuthMenu';
+import AppBar from 'components/AppBar';
 
-const Layout = () => {
-  const token = useSelector(selectToken);
-
+export const Layout = () => {
   return (
     <div>
-      <header>{token ? <AuthMenu /> : <Navigation />}</header>
+      <AppBar />
       <main>
         <Suspense fallback={<Loader />}>
           <Outlet />
@@ -21,5 +16,3 @@ const Layout = () => {
     </div>
   );
 };
-
-export default Layout;

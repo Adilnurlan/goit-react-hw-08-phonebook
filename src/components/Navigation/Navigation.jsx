@@ -14,12 +14,6 @@ export const Navigation = () => {
             Home
           </Nav>
         </li>
-        <li>
-          <Nav to="/register">Register</Nav>
-        </li>
-        <li>
-          <Nav to="/login">Login</Nav>
-        </li>
         {token && (
           <li>
             <Nav to="/contacts">Contacts</Nav>

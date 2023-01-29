@@ -3,8 +3,8 @@ import { login } from 'redux/Auth/auth-operations';
 import { useDispatch } from 'react-redux';
 
 export const Login = () => {
-  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
 

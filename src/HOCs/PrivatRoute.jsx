@@ -1,11 +1,8 @@
 import { useSelector } from 'react-redux';
 import { selectToken } from '../redux/Auth/auth-selectors';
 import { Navigate } from 'react-router-dom';
-import { selectIsFetchingCurrentUser } from '../redux/Auth/auth-selectors';
 
-export const PrivatRoute = ({ component: Component, redirectTo = '/' }) => {
+export const PrivatRoute = ({ children }) => {
   const token = useSelector(selectToken);
-  const isRefreshing = useSelector(selectIsFetchingCurrentUser);
-  const shouldRedirect = !token && !isRefreshing;
-  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
+  return token ? children : <Navigate to="/login" />;
 };

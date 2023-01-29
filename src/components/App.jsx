@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser } from 'redux/Auth/auth-operations';
+import { selectIsFetchingCurrentUser } from 'redux/Auth/auth-selectors';
 
-import Layout from './Layout/Layout';
+import { Layout } from './Layout/Layout';
 import { HomePage } from 'pages/HomePage/HomePage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
@@ -14,34 +15,44 @@ import { PrivatRoute } from 'HOCs/PrivatRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
-
+  const isfetchCurrentUser = useSelector(selectIsFetchingCurrentUser);
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute redirectTo="/contacts" component={<RegisterPage />} />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute redirectTo="/contacts" component={<LoginPage />} />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <PrivatRoute redirectTo="/login" component={<ContactsPage />} />
-          }
-        />
-      </Route>
-    </Routes>
+    <>
+      {!isfetchCurrentUser && (
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivatRoute>
+                  <ContactsPage />
+                </PrivatRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      )}
+    </>
   );
 };
