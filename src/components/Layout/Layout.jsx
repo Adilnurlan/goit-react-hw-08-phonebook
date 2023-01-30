@@ -1,18 +1,19 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Loader } from 'components/Loader/Loader';
-import AppBar from 'components/AppBar';
+import Footer from 'components/Footer/Footer';
+import { Header } from 'components/AppBar';
 
 export const Layout = () => {
   return (
     <div>
-      <AppBar />
+      <Header />
       <main>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </main>
-      <footer>Made by GOit student Nurlan Adil (2023)</footer>
+      <Footer />
     </div>
   );
 };
