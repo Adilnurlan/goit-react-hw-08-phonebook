@@ -1,3 +1,30 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { useSelector } from 'react-redux';
+import { selectToken } from 'redux/Auth/auth-selectors';
+
 export const HomePage = () => {
-  return <h1>HELLO ITS HOMEPAGE</h1>;
+  const token = useSelector(selectToken);
+
+  return (
+    <Box
+      sx={{
+        bgcolor: 'background.paper',
+        pt: 12,
+        pb: 6,
+      }}
+    >
+      <Container maxWidth="sm">
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="text.primary"
+        >
+          Hello guest! {!token && 'Please sign in/sign up'}
+        </Typography>
+      </Container>
+    </Box>
+  );
 };

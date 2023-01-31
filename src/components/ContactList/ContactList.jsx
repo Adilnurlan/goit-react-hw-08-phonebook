@@ -7,6 +7,7 @@ import {
   deleteContacts,
   fetchContacts,
 } from 'redux/contacts/contacts-operations';
+import Button from '@mui/material/Button';
 
 export default function ContactList() {
   const contacts = useSelector(selectContacts);
@@ -34,9 +35,9 @@ export default function ContactList() {
             <p className={s.contactInfo}>
               {name}: {number}
             </p>
-            <button type="button" onClick={() => dispatch(deleteContacts(id))}>
+            <Button type="button" onClick={() => dispatch(deleteContacts(id))}>
               Delete
-            </button>
+            </Button>
           </li>
         );
       })}
