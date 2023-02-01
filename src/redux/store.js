@@ -1,3 +1,4 @@
+import axios from 'axios';
 import authReducer from './Auth/authSlice';
 import contactsReducer from './contacts/contactsSlice';
 import filterReducer from './filter/filterSlice';
@@ -34,4 +35,8 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store, null, () => {
+  axios.defaults.headers.common.Authorization = `Bearer ${
+    store.getState().auth.token
+  }`;
+});

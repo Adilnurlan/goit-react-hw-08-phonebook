@@ -16,7 +16,7 @@ export const Navigation = () => {
         </li>
         {token && (
           <li>
-            <Nav to="/contacts">Contacts</Nav>
+            <Nav to="contacts">Contacts</Nav>
           </li>
         )}
       </List>

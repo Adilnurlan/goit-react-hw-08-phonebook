@@ -71,6 +71,7 @@ export const ContactForm = () => {
           id="standard-required"
           label="Name"
           name="name"
+          value={name}
           type="text"
           variant="standard"
         />
@@ -80,6 +81,7 @@ export const ContactForm = () => {
           id="standard-number"
           label="Number"
           name="number"
+          value={number}
           type="number"
           variant="standard"
         />
