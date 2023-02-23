@@ -10,15 +10,14 @@ export const HomePage = () => {
   return (
     <Box
       sx={{
-        bgcolor: 'background.paper',
-        pt: 12,
+        pt: 45,
         pb: 6,
       }}
     >
       <Container maxWidth="sm">
         <Typography
-          component="h1"
-          variant="h2"
+          component="h3"
+          variant="h3"
           align="center"
           color="text.primary"
         >

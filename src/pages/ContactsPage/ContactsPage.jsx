@@ -3,6 +3,7 @@ import ContactList from 'components/ContactList/ContactList';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import Filter from '../../components/Filter/Filter';
 import { selectIsLoading, selectError } from 'redux/selectors';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const ContactsPage = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -12,7 +13,19 @@ export const ContactsPage = () => {
     <>
       <ContactForm />
       <Filter />
-      {isLoading && !error && <h1>LOADING</h1>}
+      {isLoading && !error && (
+        <CircularProgress
+          variant="indeterminate"
+          disableShrink
+          sx={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+          }}
+          size={40}
+          thickness={4}
+        />
+      )}
       <ContactList />
     </>
   );

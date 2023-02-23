@@ -1,19 +1,17 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Loader } from 'components/Loader/Loader';
-import Footer from 'components/Footer/Footer';
 import { Header } from 'components/AppBar';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Layout = () => {
   return (
     <div>
       <Header />
       <main>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<CircularProgress />}>
           <Outlet />
         </Suspense>
       </main>
-      <Footer />
     </div>
   );
 };

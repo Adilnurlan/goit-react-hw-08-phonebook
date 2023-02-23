@@ -6,10 +6,10 @@ export const AuthNav = () => {
     <nav>
       <List>
         <li>
-          <Nav to="/register">Register</Nav>
+          <Nav to="/register">Sign up</Nav>
         </li>
         <li>
-          <Nav to="/login">Login</Nav>
+          <Nav to="/login">Log in</Nav>
         </li>
       </List>
     </nav>
